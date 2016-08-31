@@ -12,12 +12,18 @@ import { UserChatDirective } from './app.user-chat.directive';
   directives: [UserChatComponent, UserChatDirective],
   entryComponents : [UserChatComponent],
   template: `
-  <h2>Connected Users</h2>
-  <h3>Click on user name to start chat</h3>
-  <ul>
-    <li *ngFor="let user of users" ><button (click)="beginChat(user.name,'')"> {{user.name}} </button></li>
-  </ul>
-  <div chats></div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Connected users</h3>
+    </div>
+    <div class="panel panel-body"> 
+      <h4>Click on user name to start chat</h4>
+      <ul class="list-group">
+        <li *ngFor="let user of users" class="list-group-item"><button (click)="beginChat(user.name,'')"> {{user.name}} </button></li>
+      </ul>
+    </div>
+  </div>
+  <div chats class="chats"></div>
   `
 })
 export class UsersListComponent implements OnInit{

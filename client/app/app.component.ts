@@ -11,5 +11,5 @@ import { User } from './app.user';
 })
 
 export class AppComponent { 
-    title = 'Super Chat';
+    title = 'Friendly Chat';
 }

@@ -7,18 +7,32 @@ import { UserService } from './user.service';
 @Component({
   selector: 'app-auth',
   template: `
-  <h2>Please Log In</h2>
-  <form (ngSubmit)="logIn()">
-    <label for="name">      User Name   </label> <input [(ngModel)]="name"  [ngModelOptions]="{standalone: true}" name="name" required>
-    <label for="password">  Password    </label> <input [(ngModel)]="password"  [ngModelOptions]="{standalone: true}" id="password" type="password" required> 
-    <button type="submit">Log In</button>
-  </form>
-  <h2>Or Sign In</h2>
-  <form (ngSubmit)="signUp()">
-    <label for="newName">       User Name   </label> <input [(ngModel)]="newName"  [ngModelOptions]="{standalone: true}" name="newName" required>          
-    <label for="newPassword">   Password    </label> <input [(ngModel)]="newPassword"  [ngModelOptions]="{standalone: true}" id="newPassword" type="password" required>
-    <button type="submit">Sign In</button>
-  </form>
+  <div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Log In</h3>
+    </div>
+    <div class="panel panel-body"> 
+        <form (ngSubmit)="logIn()" class="auth-form">
+            <input [(ngModel)]="name"  [ngModelOptions]="{standalone: true}" name="name" required placeholder="UserName">
+            <input [(ngModel)]="password"  [ngModelOptions]="{standalone: true}" id="password" type="password" required placeholder="password"> 
+            <button type="submit" class="btn btn-primary">Log In</button>
+        </form>
+    </div>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Or Sign In</h3>
+    </div>
+    <div class="panel panel-body"> 
+        <form (ngSubmit)="signUp()" class="auth-form">
+            <input [(ngModel)]="newName"  [ngModelOptions]="{standalone: true}" name="newName" required placeholder="UserName">          
+            <input [(ngModel)]="newPassword"  [ngModelOptions]="{standalone: true}" id="newPassword" type="password" required placeholder="password">
+            <button type="submit" class="btn btn-primary" >Sign In</button>
+        </form>
+    </div>
+  </div>
+  </div>
   `
 })
 export class AuthComponent {

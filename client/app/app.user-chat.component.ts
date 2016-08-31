@@ -8,18 +8,22 @@ import { UserService } from './user.service';
 @Component({
   selector: 'ct',
   template: `
-    <div>
-    <h2>{{receiverName}}</h2>
-    <form (ngSubmit)="sendMessage()">
-        <ul>
-            <li *ngFor="let item of messages">
-            {{item}}
-            </li>
-        </ul>
-        <input [(ngModel)]="message"  autocomplete="off" [ngModelOptions]="{standalone: true}" required/>
-        <button>Send</button>
-    </form>
+  <div class="panel panel-primary chat">
+    <div class="panel-heading">
+        <h4 class="panel-title">{{receiverName}}</h4>
     </div>
+    <div class="panel panel-body"> 
+        <form (ngSubmit)="sendMessage()">
+            <ul>
+                <li *ngFor="let item of messages">
+                {{item}}
+                </li>
+            </ul>
+            <input [(ngModel)]="message"  autocomplete="off" [ngModelOptions]="{standalone: true}" required/>
+            <button>Send</button>
+        </form>
+    </div>
+  </div>
   `
 })
 export class UserChatComponent implements OnInit{
@@ -36,11 +40,15 @@ export class UserChatComponent implements OnInit{
         let self:UserChatComponent = this;
         this.userService.getSocket().on('globalMessage',function(data){
             if(self.receiverName == data.senderName || ( self.userService.getName() == data.senderName && self.receiverName == data.receiverName ) ){
-                self.messages.push(data.message);
+                if(self.userService.getName() == data.senderName){
+                    self.messages.push(data.message);
+                } else {
+                    self.messages.push("> " + data.message);
+                }
             }
         });
         if(self.initialMessage != ''){
-            self.messages.push(self.initialMessage);
+            self.messages.push("> " + self.initialMessage );
         }
     }
 
